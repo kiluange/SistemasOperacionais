@@ -128,7 +128,7 @@ export default class Menu extends React.Component{
                                     <NewChart data={this.state.fifoResult.proclist}/>
                                 </div>
                                 <div class="card-footer text-muted">
-                                    2 days ago
+                                    Tempo médio {this.state.fifoResult.tm}
                                 </div>
                             </div>  
                         </div>
@@ -141,7 +141,7 @@ export default class Menu extends React.Component{
                                     <NewChart data={this.state.sjfResult.proclist}/>
                                 </div>
                                 <div class="card-footer text-muted">
-                                    2 days ago
+                                    Tempo médio {this.state.sjfResult.tm}
                                 </div>
                             </div> 
                         </div>                        
@@ -156,7 +156,7 @@ export default class Menu extends React.Component{
                                     <NewChart data={this.state.rrResult.proclist}/>
                                 </div>
                                 <div class="card-footer text-muted">
-                                    2 days ago
+                                    Tempo médio {this.state.rrResult.tm}
                                 </div>
                             </div> 
                         </div>
@@ -169,7 +169,7 @@ export default class Menu extends React.Component{
                                     <NewChart data={this.state.edfResult.proclist}/>
                                 </div>
                                 <div class="card-footer text-muted">
-                                    2 days ago
+                                    Tempo médio {this.state.edfResult.tm}
                                 </div>
                             </div> 
                         </div>

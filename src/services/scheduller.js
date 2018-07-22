@@ -5,7 +5,6 @@ export default class Scheduller {
         let totalValue = 0;
         let texec = 0;
         let proclist = [];
-        let count = 0;
 
         procs.sort((a, b) => {
             return (a.tc > b.tc) ? 1 : ((a.tc < b.tc) ? -1 : 0)
@@ -17,7 +16,7 @@ export default class Scheduller {
                 [ element.id,'Espera', new Date(0,0,0,0,0,element.tc), new Date(0,0,0,0,0,texec) ],
                 [ element.id,'Execução', new Date(0,0,0,0,0,texec), new Date(0,0,0,0,0,element.te+texec) ]
             );
-            count++;
+            
 
             texec += element.te;
 
@@ -29,7 +28,8 @@ export default class Scheduller {
         });
 
         return {
-            proclist:proclist
+            proclist:proclist,
+            tm:(globalValue/procs.length)
         }
     }
 
@@ -38,10 +38,10 @@ export default class Scheduller {
         let totalValue = 0;
         let proclist = [];
         let texec = 0;
-        let count = 0;
+        
 
         procs.sort((a, b) => {
-            return (a.te > b.te && a.tc > b.tc ) ? 1 : ((a.te < b.te && a.tc < b.tc) ? -1 : (a.te > b.te && a.tc < b.tc) ? -1 : (a.te < b.te && a.tc > b.tc) ? 1 : (a.te < b.te && a.tc == b.tc) ? -1: (a.te > b.te && a.tc == b.tc) ? 1 : 0)
+            return (a.te > b.te && a.tc > b.tc ) ? 1 : ((a.te < b.te && a.tc < b.tc) ? -1 : (a.te > b.te && a.tc < b.tc) ? -1 : (a.te < b.te && a.tc > b.tc) ? 1 : (a.te < b.te && a.tc === b.tc) ? -1: (a.te > b.te && a.tc === b.tc) ? 1 : 0)
         });
         procs.forEach(element => {
 
@@ -50,17 +50,21 @@ export default class Scheduller {
                 [ element.id,'Espera', new Date(0,0,0,0,0,element.tc), new Date(0,0,0,0,0,texec) ],
                 [ element.id,'Execução', new Date(0,0,0,0,0,texec), new Date(0,0,0,0,0,element.te+texec) ]
             );
-            count++;
+            
 
             texec += element.te;
 
             //calculo
+            //calculo
             (totalValue += -element.tc + element.te);
             globalValue += totalValue;
+            console.log("sjf " + globalValue/procs.length);
+            console.log(proclist);
         });
 
         return {
-            proclist:proclist
+            proclist:proclist,
+            tm:(globalValue/procs.length)
         }
     }
 
@@ -69,7 +73,7 @@ export default class Scheduller {
         let totalValue = 0;
         let proclist = [];
         let rem_bt = [];
-        let count = 0;
+        
         let texec = 0;
 
         procs.sort((a, b) => {
@@ -86,7 +90,7 @@ export default class Scheduller {
                 wt:0,
                 t:0
             });
-            count++;
+            
         });
 
         //console.log("teste " + rem_bt.reduce((preVal, element) => preVal + element.te ,0))
@@ -108,6 +112,8 @@ export default class Scheduller {
 
                     element.te -= q;
 
+                    globalValue+= totalValue;
+
                     if(element.te > 0){
                         rem_bt.push(element);
                         rem_bt.pop(rem_bt[0]);
@@ -123,6 +129,7 @@ export default class Scheduller {
                         element.t += q;
                         totalValue += q + o;
                         element.te -= q;
+                        globalValue+= totalValue;
 
                         if(element.te > 0){
                             rem_bt.push(element);
@@ -135,6 +142,7 @@ export default class Scheduller {
                             );
                             element.t += element.te;
                             totalValue += element.te;
+                            globalValue+= totalValue;
                             element.te = 0;
                         }                   
                     }                    
@@ -145,7 +153,8 @@ export default class Scheduller {
         
         console.log(totalValue);
         return{
-            proclist:proclist
+            proclist:proclist,
+            tm:(globalValue/procs.length)
         };
     }
 
@@ -154,7 +163,7 @@ export default class Scheduller {
         let totalValue = 0;
         let proclist = [];
         let rem_bt = [];
-        let count = 0;
+        
         let texec = 0;
 
         procs.sort((a, b) => {
@@ -171,7 +180,7 @@ export default class Scheduller {
                 wt:0,
                 t:0
             });
-            count++;
+            
         });
 
         //console.log("teste " + rem_bt.reduce((preVal, element) => preVal + element.te ,0))
@@ -230,7 +239,8 @@ export default class Scheduller {
         
         console.log(totalValue);
         return{
-            proclist:proclist
+            proclist:proclist,
+            tm:(totalValue/procs.length)
         };
     }
 
