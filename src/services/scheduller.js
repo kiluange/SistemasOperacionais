@@ -112,8 +112,6 @@ export default class Scheduller {
 
                     element.te -= q;
 
-                    globalValue+= totalValue;
-
                     if(element.te > 0){
                         rem_bt.push(element);
                         rem_bt.pop(rem_bt[0]);
@@ -129,7 +127,6 @@ export default class Scheduller {
                         element.t += q;
                         totalValue += q + o;
                         element.te -= q;
-                        globalValue+= totalValue;
 
                         if(element.te > 0){
                             rem_bt.push(element);
@@ -142,7 +139,6 @@ export default class Scheduller {
                             );
                             element.t += element.te;
                             totalValue += element.te;
-                            globalValue+= totalValue;
                             element.te = 0;
                         }                   
                     }                    
@@ -150,11 +146,9 @@ export default class Scheduller {
             });
         }
 
-        
-        console.log(totalValue);
         return{
             proclist:proclist,
-            tm:(globalValue/procs.length)
+            tm:(totalValue/procs.length)
         };
     }
 
@@ -236,8 +230,6 @@ export default class Scheduller {
             });
         }
 
-        
-        console.log(totalValue);
         return{
             proclist:proclist,
             tm:(totalValue/procs.length)

@@ -7,7 +7,7 @@ export default class Table extends React.Component {
         <div className = 'col-lg-3 col-xs-12'>
             <div class="card text-center">
                 <div class="card-header">
-                    Featured
+                    Processos
                 </div>
                 <div class="card-body"  style={{height:252, overflowX:"auto"}}>
                     <table className="table">

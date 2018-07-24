@@ -41,7 +41,7 @@ export default class Menu extends React.Component{
                         <div className='col-lg-3 col-xs-12'>
                             <div class="card text-center">
                                 <div class="card-header">
-                                    Featured
+                                    Formulário
                                 </div>
                                 <div class="card-body">
                                     <form onSubmit={this.handleSubmit}>
@@ -127,9 +127,6 @@ export default class Menu extends React.Component{
                                 <div class="card-body">
                                     <NewChart data={this.state.fifoResult.proclist}/>
                                 </div>
-                                <div class="card-footer text-muted">
-                                    Tempo médio {this.state.fifoResult.tm}
-                                </div>
                             </div>  
                         </div>
                         <div className="col-lg-6">
@@ -139,9 +136,6 @@ export default class Menu extends React.Component{
                                 </div>
                                 <div class="card-body">
                                     <NewChart data={this.state.sjfResult.proclist}/>
-                                </div>
-                                <div class="card-footer text-muted">
-                                    Tempo médio {this.state.sjfResult.tm}
                                 </div>
                             </div> 
                         </div>                        
@@ -155,9 +149,6 @@ export default class Menu extends React.Component{
                                 <div class="card-body">
                                     <NewChart data={this.state.rrResult.proclist}/>
                                 </div>
-                                <div class="card-footer text-muted">
-                                    Tempo médio {this.state.rrResult.tm}
-                                </div>
                             </div> 
                         </div>
                         <div className="col-lg-6">
@@ -167,9 +158,6 @@ export default class Menu extends React.Component{
                                 </div>
                                 <div class="card-body">
                                     <NewChart data={this.state.edfResult.proclist}/>
-                                </div>
-                                <div class="card-footer text-muted">
-                                    Tempo médio {this.state.edfResult.tm}
                                 </div>
                             </div> 
                         </div>
